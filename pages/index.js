@@ -1,19 +1,25 @@
-import Head from "next/head";
+import Layout from "../components/Layout";
+import ProductItem from "../components/ProductItem";
+import data from "../utils/data";
+
 
 
 
 export default function Index(){
   return (
-    <div>
-      <Head>
-        <title>Urban</title>
-        <link rel="icon" href="/favicon.ico"></link>
-
-      </Head>
-      <div className="text-blue-500">
-        Hello
-      </div>
-    </div>
+    <>
+      <Layout title="Home Page">
+        <div className="
+        grid grid-cols-1 
+        gap-4 
+        md:grid-cols-3 
+        lg:grid-coles-4">
+            {data.products.map((product) => (
+                <ProductItem product={product} key={product.slug}/>
+            ))}
+        </div>
+      </Layout>
+      </>
   )
 }
 
