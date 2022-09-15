@@ -5,15 +5,16 @@ import { useEffect } from "react";
 import { useContext, useState } from "react";
 import { Store } from '../utils/store'
 import { ToastContainer } from "react-toastify";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import 'react-toastify/dist/ReactToastify.css'
 import { Menu } from "@headlessui/react";
 import DropdownLink from "./DropdownLink";
+import Cookies from "js-cookie";
 
 const Layout = ({title,children}) => {
 
-    const { status , data:session} = useSession()
-    const {state} =  useContext(Store)
+    const { status , data:session } = useSession()
+    const { state,dispatch } =  useContext(Store)
     const { cart } = state
     const [cartItemsCount,setCartItemsCount] = useState(0)
 
@@ -24,6 +25,16 @@ const Layout = ({title,children}) => {
             )
     },[cart.cartItems])
     
+    const logoutClickHnalder = () => {
+        Cookies.remove('cart')
+        dispatch({type:'CART_RESET'})
+        signOut({callbackUrl: '/login'})
+    }
+
+
+
+
+
     return(
     <div>
         <Head>
@@ -53,15 +64,26 @@ const Layout = ({title,children}) => {
                         {status === 'loading' ? (
                             'Loading'
                         ) : session?.user ? (
-                            <Menu as="div" className="relative inline-block">
-                                <Menu.Button>{session.user.name}</Menu.Button>
-                                <Menu.Items className="absolute right-0 w-56 bg-whiteorigin-top-right shadow-lg">
-                                    <Menu.Item>
-                                       <DropdownLink className="dropdown-link" href="/profile">
-                                        Profile
-                                       </DropdownLink>
-                                    </Menu.Item>
-                                </Menu.Items>
+                             <Menu as="div" className="relative inline-block">
+                            <Menu.Button className="text-blue-600">{session.user.name}</Menu.Button>
+                            <Menu.Items className="absolute right-0 w-56 bg-white origin-top-right shadow-lg">
+                                <Menu.Item>
+                                   <DropdownLink className="dropdown-link" href="/profile">
+                                    Profile
+                                   </DropdownLink>
+                                </Menu.Item>
+                                <Menu.Item>
+                                   <DropdownLink className="dropdown-link" href="/order-history">
+                                    Order History
+                                   </DropdownLink>
+                                </Menu.Item>
+                                <Menu.Item>
+                                   <a className="dropdown-link" href="#"
+                                   onClick={logoutClickHnalder} >
+                                    Logout
+                                   </a>
+                                </Menu.Item>
+                            </Menu.Items>
                             </Menu>
                         ) : (
                             <Link href="/login"><a className="p-2">Login</a></Link>
@@ -80,3 +102,5 @@ const Layout = ({title,children}) => {
 
 
 export default Layout
+
+
