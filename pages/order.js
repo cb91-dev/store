@@ -12,16 +12,16 @@ import { Store } from '../utils/store';
 
 
 
-const order = (props) => {
+const Order = () => {
     // Small fix for SSR issue. cartItems is undefined before hydration then is defined at client
     const [mounted, setMounted] = useState(false);
     useEffect(() => {
         setMounted(true)
     }, [])
     //
-    const {state, dispatch} = useContext(Store)
+    const { state } = useContext(Store)
     const { cart } = state
-    const {cartItems, shippingAddress, paymentMethod } = cart
+    const { cartItems, shippingAddress, paymentMethod } = cart
     // 123.4567 => 123.46 round function
     const round2 = (num) => Math.round(num * 100 + Number.EPSILON) /100
     // items price
@@ -188,6 +188,6 @@ const order = (props) => {
         </Layout>
     );
 }
-export default order
+export default Order
 // Lock access to only auth users
-order.auth = true
+Order.auth = true

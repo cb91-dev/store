@@ -24,7 +24,7 @@ const reducer = (state ,action) => {
             return {...state,loadingPay: false, successPay:true}
         case 'PAY_FAIL':
             return {...state,loadingPay: false,errorPay: action.payload}
-        case 'PAY_FAIL':
+        case 'PAY_RESET':
             return {...state,loadingPay: false,successPay: false, errorPay:''}
         default:
             state
@@ -33,7 +33,7 @@ const reducer = (state ,action) => {
 
 
 
-const OrderScreen = (props) => {
+const OrderScreen = () => {
     // PAYPAL 
     const [{ isPending }, paypalDispatch] = usePayPalScriptReducer()
     // orders/:id
@@ -42,7 +42,7 @@ const OrderScreen = (props) => {
 
     
     const [
-        { loading, error, order, successPay, loadingPay, successDeliver },
+        { loading, error, order, successPay, loadingPay },
         dispatch,
       ] = useReducer(reducer, {
         loading: true,
@@ -96,7 +96,7 @@ useEffect(() => {
             }
             loadPayPalScript()
         }
-},[order,order._id,paypalDispatch,successPay])
+},[order,orderId,order._id,paypalDispatch,successPay])
 
 // PAYPAL
 const createOrder = (data,actions) => {
@@ -240,7 +240,7 @@ const onError = (err) => {
                                 {isPending ? (<div>Loading...</div>
                                 ):
                                 // PAYPAL
-                                (<div className="w-full">
+                                (<div className="sm:w-full p-5">
                                     <PayPalButtons
                                     createOrder={createOrder}
                                     onApprove={onApprove}

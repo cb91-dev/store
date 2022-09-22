@@ -3,7 +3,7 @@ import React from 'react';
 import Layout from '../components/Layout';
 
 
-function unauthorised(props) {
+const Unauthorised = () => {
     const router = useRouter()
     const { message } = router.query
     return (
@@ -14,4 +14,4 @@ function unauthorised(props) {
     );
 }
 
-export default unauthorised;
+export default Unauthorised;

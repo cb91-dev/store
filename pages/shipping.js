@@ -7,7 +7,7 @@ import CheckOut from '../components/CheckOut';
 import Layout from '../components/Layout';
 import { Store } from '../utils/store';
 
-function Shipping(props) {
+function Shipping() {
     const router = useRouter()
     const {
         handleSubmit,
@@ -27,7 +27,7 @@ function Shipping(props) {
         setValue('city', shippingAddress.city)
         setValue('postCode', shippingAddress.postCode)
         setValue('country', shippingAddress.country)
-    },[])
+    },)
 
 
     const submitHandler = ({fullName,address,city,postCode,country}) => {

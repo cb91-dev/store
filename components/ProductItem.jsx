@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 
 const ProductItem = ({ product,addToCartHandler }) => {
@@ -7,9 +8,11 @@ const ProductItem = ({ product,addToCartHandler }) => {
         <div className="card z-0">
             <Link href={`/product/${product.slug}`}>
             <a>
-                <img
+                <Image
                 src={product.image}
                 alt={product.name}
+                width={700}
+                height={500}
                 className="rounded shadow"
                 />
             </a>

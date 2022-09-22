@@ -7,7 +7,7 @@ import Layout from "../components/Layout";
 import { Store } from "../utils/store";
 
 
-const payment = (props) => {
+const Payment = () => {
     const [selectedPaymentMethod,setSelectedPaymentMethod] = useState('')
 
     const {state,dispatch} = useContext(Store)
@@ -69,7 +69,7 @@ const payment = (props) => {
     );
 }
 
-export default payment;
+export default Payment;
 
 // Lock access to only auth users
-payment.auth = true
+Payment.auth = true

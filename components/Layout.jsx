@@ -50,7 +50,9 @@ const Layout = ({title,children}) => {
                         <a className="text-lg font-bold">
                             <Image src="/urban_main_logo.svg"
                             height="100px"
-                            width="100px"/>
+                            width="100px"
+                            alt="Main Logo"
+                            />
                         </a>
                     </Link>
                     <div>
