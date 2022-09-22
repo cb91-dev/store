@@ -57,7 +57,7 @@ const order = (props) => {
                   totalPrice,
                 })
             setLoading(false)
-            dispatch({type: 'CART_CLEAR_ITEMS'})
+            // dispatch({type: 'CART_CLEAR_ITEMS'})
             Cookies.set(
                 'cart',
                 JSON.stringify({
@@ -65,7 +65,7 @@ const order = (props) => {
                     cartItems: [],
                 }))
 
-        // router.push('/order/${data._id}')
+        router.push(`/order/${data._id}`)
         }catch (err){
             setLoading(false)
             toast.error(getError(err))

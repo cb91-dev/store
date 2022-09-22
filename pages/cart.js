@@ -18,6 +18,7 @@ const CartScreen = () => {
     const removeItemHanlder = (item) => {
         dispatch({type:'CART_REMOVE_ITEM', payload:item})
     }
+    
     const updateCarthanlder = async(item,qty) =>{
         const quantity = Number(qty)
         const { data } = await axios.get(`api/products/${item._id}`)
@@ -27,6 +28,7 @@ const CartScreen = () => {
         dispatch({type: 'CART_ADD_ITEM',payload:{...item,quantity}})
         toast.success('Product updated in cart')
     }
+
     return (
         <Layout title="Cart">
             <h1 className='mb-4 text-xl'>Cart</h1>

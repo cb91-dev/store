@@ -66,7 +66,7 @@ const Layout = ({title,children}) => {
                         ) : session?.user ? (
                              <Menu as="div" className="relative inline-block">
                             <Menu.Button className="text-blue-600">{session.user.name}</Menu.Button>
-                            <Menu.Items className="absolute right-0 w-56 bg-white origin-top-right shadow-lg">
+                            <Menu.Items className="z-50 absolute right-0 w-56 bg-white origin-top-right shadow-lg">
                                 <Menu.Item>
                                    <DropdownLink className="dropdown-link" href="/profile">
                                     Profile

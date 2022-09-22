@@ -6,7 +6,6 @@ import { useContext } from "react";
 import { Store } from "../utils/store";
 import axios from "axios";
 import { toast } from "react-toastify";
-import superjson from 'superjson';
 
 
 export default function Index({ products }) {
